@@ -1,5 +1,5 @@
 rootProject.name = "SillyUHC-Development"
-include(":PlayerStatsAPI", ":SillyUHC")
+include(":PlayerStatsAPI", ":SillyUHC", ":ReaperUtils")
 
 pluginManagement{
     repositories{

@@ -3,7 +3,7 @@ package com.github.redreaperlp.sillyuhc.listener;
 import com.github.redreaperlp.psa.database.PlayerData;
 import com.github.redreaperlp.sillyuhc.SillyUHC;
 import com.github.redreaperlp.sillyuhc.ui.scoreboard.ScoreboardManager;
-import com.github.redreaperlp.sillyuhc.util.AdventureUtil;
+import com.github.redreaperlp.utils.AdventureUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
@@ -14,6 +14,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+
+import static com.github.redreaperlp.sillyuhc.SillyUHC.adventureUtil;
 
 public class PlayerListener implements Listener {
     private final SillyUHC sillyUHC;
@@ -30,7 +32,7 @@ public class PlayerListener implements Listener {
             data.setCoins(sillyUHC, data.getCoins() + 5);
             data.setKills(sillyUHC, data.getKills() + 1);
         } catch (PlayerData.NoPermissionException e) {
-            AdventureUtil.sendWithPrefix(Component.text("No permission! (" + e.getType().toString() + ") This is required for the Plugin to work properly!"), Bukkit.getServer().getConsoleSender());
+            adventureUtil.sendWithPrefix(Component.text("No permission! (" + e.getType().toString() + ") This is required for the Plugin to work properly!"), Bukkit.getServer().getConsoleSender());
         }
     }
 

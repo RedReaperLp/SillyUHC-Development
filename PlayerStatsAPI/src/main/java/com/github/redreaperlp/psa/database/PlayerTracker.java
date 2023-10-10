@@ -9,9 +9,11 @@ import java.util.*;
 public class PlayerTracker {
     private HashMap<UUID, PlayerData> playerDataHashMap = new HashMap<>();
     private PlayerStatsAPI playerStatsAPI;
+    private Database database;
 
     public PlayerTracker(PlayerStatsAPI playerStatsAPI) {
         this.playerStatsAPI = playerStatsAPI;
+        database = playerStatsAPI.getDatabase(playerStatsAPI);
     }
 
     public PlayerData getPlayerData(Player player) {
@@ -22,25 +24,25 @@ public class PlayerTracker {
         if (playerDataHashMap.containsKey(player.getUniqueId())) {
             return;
         }
-        PlayerData data = playerStatsAPI.getDatabase().getPlayerData(player);
+        PlayerData data = database.getPlayerData(player);
         playerDataHashMap.put(player.getUniqueId(), data);
     }
 
     public void loadOnlinePlayers() {
         List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
-        playerStatsAPI.getDatabase().getPlayerData(players).forEach(playerData -> playerDataHashMap.put(playerData.getUuid(), playerData));
+        database.getPlayerData(players).forEach(playerData -> playerDataHashMap.put(playerData.getUuid(), playerData));
     }
 
     public void savePlayer(Player player) {
         if (playerDataHashMap.containsKey(player.getUniqueId())) {
-            playerStatsAPI.getDatabase().savePlayerData(playerDataHashMap.get(player.getUniqueId()));
+            database.savePlayerData(playerDataHashMap.get(player.getUniqueId()));
             playerDataHashMap.remove(player.getUniqueId());
         }
     }
 
     protected void saveAll() {
         for (PlayerData data : playerDataHashMap.values()) {
-            playerStatsAPI.getDatabase().savePlayerData(data);
+            database.savePlayerData(data);
         }
     }
 }

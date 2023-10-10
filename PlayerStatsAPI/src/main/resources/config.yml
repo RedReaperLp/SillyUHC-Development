@@ -7,46 +7,58 @@
 #------------------------------------------------------
 # These are the names of the plugins that are allowed
 # to change every stat of a player.
-# These don't have to be listed below.
+# These don't have to be listed below. Except for the
+# plugin.full-database-access.
 # (Security Reasons)
 #------------------------------------------------------
-plugin-full-access:
+plugin.full-access:
   - "SillyUHC"
 
 #------------------------------------------------------
 # These are the names of the plugins that are allowed
 # to change the coins of a player.
 #------------------------------------------------------
-plugin-coin-change:
-  - "SillyUHC"
+plugin.coin-change:
+  -
 
 #------------------------------------------------------
 # These are the names of the plugins that are allowed
 # to change the all of Kill / Death / Wins / Loses of
 # a player.
 #------------------------------------------------------
-plugin-kdwl-change:
-  - "SillyUHC"
+plugin.kdwl-change:
+  -
 
 #------------------------------------------------------
 # These are the names of the plugins that are allowed
 # to change how far the daily playing streak of a
 # player is.
 #------------------------------------------------------
-plugin-daily-change:
-  - "SillyUHC"
+plugin.daily-change:
+  -
+
+#------------------------------------------------------
+# These are the names of the plugins that are allowed
+# to access the full database. (Not Recommended)
+#------------------------------------------------------
+plugin.full-database-access:
+  -
 
 
 #------------------------------------------------------
 # These are the Database settings.
-# db-host: The host (IP or URL) of the database.
-# db-port: The port of the database.
-# db-database: The name of the database.
-# db-username: The username of the database.
-# db-password: The password of the database.
+# database.host: The host (IP or URL) of the database.
+# database.port: The port of the database.
+# database.database: The name of the database.
+# database.username: The username of the database.
+# database.password: The password of the database.
+# database.submit.on.change: If the plugin should submit
+#                            the data to the database
+#                            when it is changed.
 #------------------------------------------------------
-db-host: "localhost"
-db-port: 3306
-db-database: "playerstats"
-db-username: "root"
-db-password: "password"
+database.host: "localhost"
+database.port: 3306
+database.database: "playerstats"
+database.username: "root"
+database.password: "password"
+database.submit.on.change: false

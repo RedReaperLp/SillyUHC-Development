@@ -40,8 +40,8 @@ public class PlayerData {
     }
 
     public void setCoins(JavaPlugin plugin, int coins) throws NoPermissionException {
-        if (PluginPermission.hasPermission(plugin, PluginPermission.PermissionType.COIN_CHANGE)) this.coins = coins;
-        else throw new NoPermissionException("No permission with plugin " + plugin.getName(), PluginPermission.PermissionType.COIN_CHANGE);
+        checkPermission(plugin, PluginPermission.PermissionType.COIN_CHANGE);
+        this.coins = coins;
     }
 
     public int getKills() {
@@ -49,8 +49,8 @@ public class PlayerData {
     }
 
     public void setKills(JavaPlugin plugin, int kills) throws NoPermissionException {
-        if (PluginPermission.hasPermission(plugin, PluginPermission.PermissionType.KDWL_CHANGE)) this.kills = kills;
-        else throw new NoPermissionException("No permission with plugin " + plugin.getName(), PluginPermission.PermissionType.KDWL_CHANGE);
+        checkPermission(plugin, PluginPermission.PermissionType.KDWL_CHANGE);
+        this.kills = kills;
     }
 
     public int getDeaths() {
@@ -58,8 +58,8 @@ public class PlayerData {
     }
 
     public void setDeaths(JavaPlugin plugin, int deaths) throws NoPermissionException {
-        if (PluginPermission.hasPermission(plugin, PluginPermission.PermissionType.KDWL_CHANGE)) this.deaths = deaths;
-        else throw new NoPermissionException("No permission with plugin " + plugin.getName(), PluginPermission.PermissionType.KDWL_CHANGE);
+        checkPermission(plugin, PluginPermission.PermissionType.KDWL_CHANGE);
+        this.deaths = deaths;
     }
 
     public int getWins() {
@@ -67,8 +67,8 @@ public class PlayerData {
     }
 
     public void setWins(JavaPlugin plugin, int wins) throws NoPermissionException {
-        if (PluginPermission.hasPermission(plugin, PluginPermission.PermissionType.KDWL_CHANGE)) this.wins = wins;
-        else throw new NoPermissionException("No permission with plugin " + plugin.getName(), PluginPermission.PermissionType.KDWL_CHANGE);
+        checkPermission(plugin, PluginPermission.PermissionType.KDWL_CHANGE);
+        this.wins = wins;
     }
 
     public int getLosses() {
@@ -76,8 +76,8 @@ public class PlayerData {
     }
 
     public void setLosses(JavaPlugin plugin, int losses) throws NoPermissionException {
-        if (PluginPermission.hasPermission(plugin, PluginPermission.PermissionType.KDWL_CHANGE)) this.losses = losses;
-        else throw new NoPermissionException("No permission with plugin " + plugin.getName(), PluginPermission.PermissionType.KDWL_CHANGE);
+        checkPermission(plugin, PluginPermission.PermissionType.KDWL_CHANGE);
+        this.losses = losses;
     }
 
     public int getDailyProgress() {
@@ -85,9 +85,8 @@ public class PlayerData {
     }
 
     public void setDailyProgress(JavaPlugin plugin, int dailyProgress) throws NoPermissionException {
-        if (PluginPermission.hasPermission(plugin, PluginPermission.PermissionType.DAILY_CHANGE))
-            this.dailyProgress = dailyProgress;
-        else throw new NoPermissionException("No permission with plugin " + plugin.getName(), PluginPermission.PermissionType.DAILY_CHANGE);
+        checkPermission(plugin, PluginPermission.PermissionType.DAILY_CHANGE);
+        this.dailyProgress = dailyProgress;
     }
 
     public String getName() {
@@ -96,6 +95,10 @@ public class PlayerData {
 
     public void setName(JavaPlugin plugin, String name) {
         this.name = name;
+    }
+
+    public void checkPermission(JavaPlugin plugin, PluginPermission.PermissionType type) throws NoPermissionException {
+        if (!PluginPermission.hasPermission(plugin, type)) throw new NoPermissionException("No permission with plugin " + plugin.getName(), type);
     }
 
     public static class NoPermissionException extends Exception {

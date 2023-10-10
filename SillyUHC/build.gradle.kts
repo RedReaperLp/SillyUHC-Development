@@ -6,18 +6,11 @@ plugins {
 }
 
 group = "com.github.redreaperlp.sillyuhc"
-version = "1.0"
-
-repositories {
-    mavenCentral()
-    mavenLocal()
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
-    maven("https://oss.sonatype.org/content/repositories/central")
-}
+version = "1.0.0"
 
 dependencies {
     compileOnly(project(mapOf("path" to ":PlayerStatsAPI")))
+    implementation(project(mapOf("path" to ":ReaperUtils")))
     paperweight.paperDevBundle("1.19.4-R0.1-SNAPSHOT")
 }
 
@@ -25,16 +18,6 @@ tasks {
     named<ShadowJar>("shadowJar") {
         archiveClassifier.set("")
         archiveFileName.set("SillyUHC.jar")
-    }
-
-    named<JavaCompile>("compileJava") {
-        options.encoding = "UTF-8"
-    }
-}
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 

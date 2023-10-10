@@ -1,7 +1,5 @@
 package com.github.redreaperlp.sillyuhc.game.participators;
 
-import com.github.redreaperlp.sillyuhc.util.AdventureUtil;
-import com.mojang.authlib.GameProfile;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -9,6 +7,8 @@ import org.bukkit.Bukkit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static com.github.redreaperlp.sillyuhc.SillyUHC.adventureUtil;
 
 public class Participator {
     private UUID playerUUID;
@@ -19,7 +19,7 @@ public class Participator {
         this.playerUUID = playerUUID;
         this.playerName = playerName;
         //TODO: update all stats like hunger, health, exp, etc.
-        AdventureUtil.sendWithPrefix(Component.text("You are Participating", TextColor.color(0xff0000)),Bukkit.getPlayer(playerUUID));
+        adventureUtil.sendWithPrefix(Component.text("You are Participating", TextColor.color(0xff0000)),Bukkit.getPlayer(playerUUID));
     }
 
     public UUID getPlayerUUID() {

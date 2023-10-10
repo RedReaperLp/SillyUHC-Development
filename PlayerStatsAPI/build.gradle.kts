@@ -1,7 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 group = "com.github.redreaperlp.psa"
-version = "0.1"
+version = "1.0.0"
 
 publishData {
     useEldoNexusRepos()
@@ -31,21 +31,13 @@ publishing {
 dependencies {
     implementation("com.zaxxer", "HikariCP", "5.0.1")
     implementation("org.mariadb.jdbc", "mariadb-java-client", "3.2.0")
+    implementation(project(mapOf("path" to ":ReaperUtils")))
 }
 
 tasks {
     named<ShadowJar>("shadowJar") {
         archiveClassifier.set("")
         archiveFileName.set("PS-API.jar")
-    }
-    compileJava {
-        options.encoding = "UTF-8"
-    }
-}
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 

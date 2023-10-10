@@ -6,7 +6,7 @@ import com.github.redreaperlp.sillyuhc.commands.SillyCommand;
 import com.github.redreaperlp.sillyuhc.commands.Stats;
 import com.github.redreaperlp.sillyuhc.game.phases.PhaseWaiting;
 import com.github.redreaperlp.sillyuhc.listener.PlayerListener;
-import com.github.redreaperlp.sillyuhc.util.AdventureUtil;
+import com.github.redreaperlp.utils.AdventureUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.TextColor;
@@ -22,20 +22,22 @@ public class SillyUHC extends JavaPlugin {
     public static TextComponent prefix = Component.text("SillyUHC » ", TextColor.color(0xff8c00)).decorate(TextDecoration.BOLD);
     private PlayerStatsAPI api = (PlayerStatsAPI) Bukkit.getServer().getPluginManager().getPlugin("PlayerStatsAPI");
     public static World lobbyWorld;
+    public static AdventureUtil adventureUtil;
 
     @Override
     public void onEnable() {
         instance = this;
+        adventureUtil = new AdventureUtil(prefix);
         if (api != null) {
             if (api.isEnabled()) {
-                AdventureUtil.sendWithPrefix(Component.text("PlayerStatsAPI found!", TextColor.color(0x00ff00)), Bukkit.getConsoleSender());
+                adventureUtil.sendWithPrefix(Component.text("PlayerStatsAPI found!", TextColor.color(0x00ff00)), Bukkit.getConsoleSender());
             } else {
-                AdventureUtil.sendWithPrefix(Component.text("PlayerStatsAPI found but not enabled!", TextColor.color(0xff0000)), Bukkit.getConsoleSender());
+                adventureUtil.sendWithPrefix(Component.text("PlayerStatsAPI found but not enabled!", TextColor.color(0xff0000)), Bukkit.getConsoleSender());
                 getServer().getPluginManager().disablePlugin(this);
                 return;
             }
         } else {
-            AdventureUtil.sendWithPrefix(Component.text("PlayerStatsAPI not found!", TextColor.color(0xff0000)), Bukkit.getConsoleSender());
+            adventureUtil.sendWithPrefix(Component.text("PlayerStatsAPI not found!", TextColor.color(0xff0000)), Bukkit.getConsoleSender());
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
