@@ -22,7 +22,7 @@ publishing {
                 }
             }
 
-            name = "EldoNexus"
+            name = "PlayerStatsAPI"
             setUrl(publishData.getRepository())
         }
     }

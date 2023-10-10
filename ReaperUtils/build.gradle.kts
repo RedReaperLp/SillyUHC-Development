@@ -14,6 +14,7 @@ publishData {
     useEldoNexusRepos()
     publishComponent("java")
 }
+
 publishing {
     publications.create<MavenPublication>("maven") {
         publishData.configurePublication(this)
@@ -28,7 +29,7 @@ publishing {
                 }
             }
 
-            name = "EldoNexus"
+            name = "ReaperUtils"
             setUrl(publishData.getRepository())
         }
     }
