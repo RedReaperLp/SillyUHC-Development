@@ -1,0 +1,5 @@
+name: "PlayerStatsAPI"
+main: "com.github.redreaperlp.psa.PlayerStatsAPI"
+version: "1.0"
+load: STARTUP
+api-version: "1.19"

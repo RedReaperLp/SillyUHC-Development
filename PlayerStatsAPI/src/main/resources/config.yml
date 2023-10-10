@@ -1,0 +1,52 @@
+#--------------------------------------------------------------
+# This is the configuration file for the PlayerStatsAPI plugin.
+# When it is asked for a plugin, you need to provide the full
+# id of the plugin. (found when it is being enabled)
+#--------------------------------------------------------------
+
+#------------------------------------------------------
+# These are the names of the plugins that are allowed
+# to change every stat of a player.
+# These don't have to be listed below.
+# (Security Reasons)
+#------------------------------------------------------
+plugin-full-access:
+  - "SillyUHC"
+
+#------------------------------------------------------
+# These are the names of the plugins that are allowed
+# to change the coins of a player.
+#------------------------------------------------------
+plugin-coin-change:
+  - "SillyUHC"
+
+#------------------------------------------------------
+# These are the names of the plugins that are allowed
+# to change the all of Kill / Death / Wins / Loses of
+# a player.
+#------------------------------------------------------
+plugin-kdwl-change:
+  - "SillyUHC"
+
+#------------------------------------------------------
+# These are the names of the plugins that are allowed
+# to change how far the daily playing streak of a
+# player is.
+#------------------------------------------------------
+plugin-daily-change:
+  - "SillyUHC"
+
+
+#------------------------------------------------------
+# These are the Database settings.
+# db-host: The host (IP or URL) of the database.
+# db-port: The port of the database.
+# db-database: The name of the database.
+# db-username: The username of the database.
+# db-password: The password of the database.
+#------------------------------------------------------
+db-host: "localhost"
+db-port: 3306
+db-database: "playerstats"
+db-username: "root"
+db-password: "password"

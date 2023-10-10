@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="PlayerStatsAPI.main" target="20" />
+      <module name="PlayerStatsAPI.test" target="20" />
+      <module name="SillyUHC.main" target="17" />
+      <module name="SillyUHC.test" target="17" />
+      <module name="UHC.PlayerStatsAPI" target="20" />
+      <module name="UHC.SillyUHC" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

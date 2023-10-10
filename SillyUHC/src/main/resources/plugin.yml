@@ -1,0 +1,17 @@
+name: "SillyUHC"
+main: "com.github.redreaperlp.sillyuhc.SillyUHC"
+version: "1.0"
+api-version: "1.19"
+commands:
+  sillyuhc:
+    description: "Opens the SillyUHC menu"
+    usage: "/sillyuhc"
+    permission: "sillyuhc.menu"
+    aliases: [su]
+  stats:
+    description: "Opens the PlayerStats menu"
+    usage: "/stats"
+    permission: "playerstats.menu"
+    aliases: [ps]
+softdepend:
+  - "PlayerStatsAPI"
