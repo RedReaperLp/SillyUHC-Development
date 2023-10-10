@@ -16,7 +16,6 @@ dependencies {
 
 tasks {
     named<ShadowJar>("shadowJar") {
-        archiveClassifier.set("")
         archiveFileName.set("SillyUHC.jar")
     }
 }

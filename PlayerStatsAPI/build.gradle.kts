@@ -11,7 +11,6 @@ dependencies {
 
 tasks {
     named<ShadowJar>("shadowJar") {
-        archiveClassifier.set("")
         archiveFileName.set("PS-API.jar")
     }
 }
