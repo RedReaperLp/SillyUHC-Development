@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PlayerTracker {
     private HashMap<UUID, PlayerData> playerDataHashMap = new HashMap<>();
@@ -29,8 +30,8 @@ public class PlayerTracker {
     }
 
     public void loadOnlinePlayers() {
-        List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
-        database.getPlayerData(players).forEach(playerData -> playerDataHashMap.put(playerData.getUuid(), playerData));
+        List<PlayerData> data =  database.getPlayerData(new ArrayList<>(Bukkit.getOnlinePlayers()));
+        data.forEach(playerData -> playerDataHashMap.put(playerData.getUuid(), playerData));
     }
 
     public void savePlayer(Player player) {

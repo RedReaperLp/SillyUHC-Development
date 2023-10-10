@@ -10,7 +10,7 @@ public class ScorboardIngame extends ScoreboardUI {
     long nextPhaseTime;
 
     public ScorboardIngame(SillyUHC plugin, long nextPhaseTime) {
-        super(plugin);
+        super(plugin, ScoreboardWrapper.gameScoreboard);
         this.nextPhaseTime = nextPhaseTime;
     }
 

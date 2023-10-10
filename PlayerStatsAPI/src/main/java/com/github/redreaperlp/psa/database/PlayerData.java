@@ -101,7 +101,7 @@ public class PlayerData {
         if (!PluginPermission.hasPermission(plugin, type)) throw new NoPermissionException("No permission with plugin " + plugin.getName(), type);
     }
 
-    public static class NoPermissionException extends Exception {
+    public static class NoPermissionException extends RuntimeException {
         PluginPermission.PermissionType type;
         public NoPermissionException(String message, PluginPermission.PermissionType type) {
             super(message);

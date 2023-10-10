@@ -3,9 +3,11 @@ package com.github.redreaperlp.sillyuhc.listener;
 import com.github.redreaperlp.psa.database.PlayerData;
 import com.github.redreaperlp.sillyuhc.SillyUHC;
 import com.github.redreaperlp.sillyuhc.ui.scoreboard.ScoreboardManager;
-import com.github.redreaperlp.utils.AdventureUtil;
+import com.github.redreaperlp.sillyuhc.ui.scoreboard.boards.ScoreboardWrapper;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,6 +16,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.github.redreaperlp.sillyuhc.SillyUHC.adventureUtil;
 
@@ -26,14 +32,11 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        Bukkit.getScheduler().runTaskLater(sillyUHC, ScoreboardManager::update, 1);
-        PlayerData data = sillyUHC.getPSA().getPlayerTracker().getPlayerData(event.getPlayer());
-        try {
-            data.setCoins(sillyUHC, data.getCoins() + 5);
-            data.setKills(sillyUHC, data.getKills() + 1);
-        } catch (PlayerData.NoPermissionException e) {
-            adventureUtil.sendWithPrefix(Component.text("No permission! (" + e.getType().toString() + ") This is required for the Plugin to work properly!"), Bukkit.getServer().getConsoleSender());
-        }
+        Bukkit.getScheduler().runTaskLater(sillyUHC, () -> {
+            event.getPlayer().teleport(sillyUHC.getLobbyWorld().getSpawnLocation());
+            sillyUHC.getLobbyScoreboard().showPlayer(event.getPlayer());
+            ScoreboardManager.update();
+        }, 1);
     }
 
     @EventHandler
@@ -42,29 +45,66 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
+    public void onPlayerTeleport(PlayerTeleportEvent e) {
+        if (e.getFrom().getWorld() != e.getTo().getWorld()) {
+            if (e.getTo().getWorld().equals(sillyUHC.getLobbyWorld())) {
+                sillyUHC.getLobbyScoreboard().showPlayer(e.getPlayer());
+            } else {
+                ScoreboardManager.currentScoreboard.showPlayer(e.getPlayer());
+            }
+        } 
+    }
+
+    @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         event.setDeathMessage(null);
         Player player = event.getEntity();
+        List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
+        players.remove(player);
+
         if (player.getKiller() != null) {
             Player killer = player.getKiller();
-            //TODO: Coin system
-            AdventureUtil.broadcast(Component.text(player.getName() + " was killed by " + killer.getName() + "!"));
+            killer.playSound(killer.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 2);
+            players.remove(killer);
+
+            PlayerData data = sillyUHC.getPSA().getPlayerTracker().getPlayerData(killer);
+            data.setCoins(sillyUHC, data.getCoins() + 10);
+
+            adventureUtil.sendWithPrefix(Component.text(player.getName(), TextColor.color(0x0096FF))
+                    .append(Component.text(" was killed by ", TextColor.color(0xff8c00)))
+                    .append(Component.text(killer.getName(), TextColor.color(0xffff00))), players.toArray(Player[]::new));
+            adventureUtil.sendWithPrefix(Component.text("You killed ", TextColor.color(0xff8c00))
+                    .append(Component.text(player.getName(), TextColor.color(0x0096FF)))
+                    .append(Component.text(" (10 Coins)", TextColor.color(0x00ff00))), killer);
+            adventureUtil.sendWithPrefix(Component.text("You were killed by ", TextColor.color(0xff8c00))
+                    .append(Component.text(killer.getName(), TextColor.color(0xffff00))), player);
         } else {
-            AdventureUtil.broadcast(Component.text(player.getName() + " died!"));
+            adventureUtil.sendWithPrefix(Component.text(player.getName(), TextColor.color(0x0096FF))
+                    .append(Component.text(" died!", TextColor.color(0xff8c00))), players.toArray(Player[]::new));
+            adventureUtil.sendWithPrefix(Component.text("You died!", TextColor.color(0xff8c00)), player);
         }
     }
 
     @EventHandler
     public void onPlayerDamage(EntityDamageByEntityEvent event) {
         Entity damager = event.getDamager();
+
         if (damager instanceof Player player) {
             if (player.getInventory().getItemInMainHand().getType().toString().contains("axe")) {
-                double od = event.getDamage();
-                double nd = od * 0.5;
-                event.setDamage(nd);
-            }
-            event.getFinalDamage();
-        }
+                int maxAxeDamage = 5;
 
+                double od = event.getFinalDamage();
+                double nd = (od > maxAxeDamage) ? maxAxeDamage : (od * 0.5);
+                event.setDamage(nd);
+
+            } else if (player.getInventory().getItemInMainHand().getType().toString().contains("bow")) {
+                int maxBowDamage = 1;
+
+                double obd = event.getFinalDamage();
+                double nbd = (obd > maxBowDamage) ? maxBowDamage : (obd * 0.5);
+                event.setDamage(nbd);
+
+            }
+        }
     }
 }

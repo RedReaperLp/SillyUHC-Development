@@ -7,7 +7,7 @@ public class ScoreboardWaiting extends ScoreboardUI {
     SillyUHC sillyUHC;
 
     public ScoreboardWaiting(SillyUHC sillyUHC) {
-        super(sillyUHC);
+        super(sillyUHC, ScoreboardWrapper.gameScoreboard);
         this.sillyUHC = sillyUHC;
     }
 

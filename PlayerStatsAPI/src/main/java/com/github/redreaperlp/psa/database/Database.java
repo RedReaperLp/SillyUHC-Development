@@ -20,15 +20,13 @@ import static com.github.redreaperlp.psa.PlayerStatsAPI.adventureUtil;
 
 public class Database {
     private HikariDataSource dataSource;
-    private boolean submitOnChange;
 
-    public Database(String host, int port, String database, String username, String password, boolean submitOnChange) {
+    public Database(String host, int port, String database, String username, String password) {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://" + host + ":" + port + "/" + database);
         config.setUsername(username);
         config.setPassword(password);
         dataSource = new HikariDataSource(config);
-        this.submitOnChange = submitOnChange;
         try (Connection con = dataSource.getConnection()) {
             String useDatabaseQuery = "USE " + database + ";";
             PreparedStatement statement = con.prepareStatement(useDatabaseQuery);

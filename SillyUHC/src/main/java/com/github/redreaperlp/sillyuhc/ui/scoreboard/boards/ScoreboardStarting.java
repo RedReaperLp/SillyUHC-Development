@@ -7,7 +7,7 @@ public class ScoreboardStarting extends ScoreboardUI {
     private long remainingTime;
     private SillyUHC sillyUHC;
     public ScoreboardStarting(SillyUHC sillyUHC, long remainingTime) {
-        super(sillyUHC);
+        super(sillyUHC, ScoreboardWrapper.gameScoreboard);
         this.sillyUHC = sillyUHC;
         this.remainingTime = remainingTime;
     }

@@ -31,8 +31,7 @@ public class PlayerStatsAPI extends JavaPlugin {
                 getConfig().getInt("database.port"),
                 getConfig().getString("database.database"),
                 getConfig().getString("database.username"),
-                getConfig().getString("database.password"),
-                getConfig().getBoolean("database.submit.on.change"));
+                getConfig().getString("database.password"));
         playerTracker = new PlayerTracker(this);
         playerTracker.loadOnlinePlayers();
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);

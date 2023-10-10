@@ -61,4 +61,3 @@ database.port: 3306
 database.database: "playerstats"
 database.username: "root"
 database.password: "password"
-database.submit.on.change: false

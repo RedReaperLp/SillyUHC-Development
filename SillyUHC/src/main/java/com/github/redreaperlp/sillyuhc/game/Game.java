@@ -2,10 +2,7 @@ package com.github.redreaperlp.sillyuhc.game;
 
 import com.github.redreaperlp.sillyuhc.SillyUHC;
 import com.github.redreaperlp.sillyuhc.game.participators.Participator;
-import com.github.redreaperlp.sillyuhc.game.phases.GamePhase;
-import com.github.redreaperlp.sillyuhc.game.phases.PhaseEnd;
-import com.github.redreaperlp.sillyuhc.game.phases.PhaseNoPvP;
-import com.github.redreaperlp.sillyuhc.game.phases.PhaseStarting;
+import com.github.redreaperlp.sillyuhc.game.phases.*;
 import com.github.redreaperlp.sillyuhc.ui.scoreboard.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
@@ -25,12 +22,13 @@ public class Game {
 
     public Game(SillyUHC sillyUHC) {
         this.sillyUHC = sillyUHC;
+        new PhaseWaiting(sillyUHC).init();
         currentGame = this;
         phases = new ArrayList<>(List.of(new PhaseStarting(sillyUHC, 30), new PhaseNoPvP(sillyUHC, 10, "PvP"), new PhaseNoPvP(sillyUHC, 10, "End")));
     }
 
     public void start() {
-        Bukkit.getOnlinePlayers().forEach(player -> {
+        sillyUHC.getLobbyWorld().getPlayers().forEach(player -> {
             participators.add(new Participator(player.getUniqueId(), player.getName()));
         });
         phaseUpdater = Bukkit.getScheduler().runTaskTimerAsynchronously(sillyUHC, () -> {
