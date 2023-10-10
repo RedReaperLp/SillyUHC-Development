@@ -1,0 +1,117 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.github.redreaperlp",
+    "module": "playerstatsapi",
+    "version": "1.0.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.3"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "playerstatsapi-1.0.0-SNAPSHOT.jar",
+          "url": "playerstatsapi-1.0.0-SNAPSHOT.jar",
+          "size": 19405,
+          "sha512": "e5a4bb6db2744524bb422186e88c217140aac937ff0d9a4500b646f0bcb4a4d5a29f370c22194b18d189375cf935791917b6ca07815dfda92bef1841d86cafdc",
+          "sha256": "01762344c686803057b6f8c5df23a817e5c24c300a9a2de5a34838cb992b6fd2",
+          "sha1": "dc8a476ad5b92323f3e0cf9799e1fbe417333f79",
+          "md5": "9aea5c975f6b2e2bded5c4d9c7d79e18"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "net.kyori",
+          "module": "adventure-platform-bukkit",
+          "version": {
+            "requires": "4.3.0"
+          }
+        },
+        {
+          "group": "org.json",
+          "module": "json",
+          "version": {
+            "requires": "20230618"
+          }
+        },
+        {
+          "group": "com.zaxxer",
+          "module": "HikariCP",
+          "version": {
+            "requires": "5.0.1"
+          }
+        },
+        {
+          "group": "org.mariadb.jdbc",
+          "module": "mariadb-java-client",
+          "version": {
+            "requires": "3.2.0"
+          }
+        },
+        {
+          "group": "com.github.redreaperlp",
+          "module": "reaperutils",
+          "version": {
+            "requires": "1.0-SNAPSHOT"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "playerstatsapi-1.0.0-SNAPSHOT.jar",
+          "url": "playerstatsapi-1.0.0-SNAPSHOT.jar",
+          "size": 19405,
+          "sha512": "e5a4bb6db2744524bb422186e88c217140aac937ff0d9a4500b646f0bcb4a4d5a29f370c22194b18d189375cf935791917b6ca07815dfda92bef1841d86cafdc",
+          "sha256": "01762344c686803057b6f8c5df23a817e5c24c300a9a2de5a34838cb992b6fd2",
+          "sha1": "dc8a476ad5b92323f3e0cf9799e1fbe417333f79",
+          "md5": "9aea5c975f6b2e2bded5c4d9c7d79e18"
+        }
+      ]
+    },
+    {
+      "name": "shadowRuntimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "shadowed",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "playerstatsapi-1.0.0-SNAPSHOT.jar",
+          "url": "playerstatsapi-1.0.0-SNAPSHOT.jar",
+          "size": 6101138,
+          "sha512": "0311cb20ab9381171d2e78d21da41944229fa0d4097879ef4320840a270b7fc07cc858d429660d474bf211b2c99cb9caf154c441aecee7afeb60eed691e36828",
+          "sha256": "eae6bd8a3681ab226c9595c0ff0d88ea345139a7e7913ea192c7ba8e67000441",
+          "sha1": "356a4aafca6de24b1dfd192ed16f9ae987ba5ce7",
+          "md5": "14d0a508c8f219ba6f80671066ae762a"
+        }
+      ]
+    }
+  ]
+}

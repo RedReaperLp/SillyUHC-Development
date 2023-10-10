@@ -29,8 +29,8 @@ publishing {
                 }
             }
 
-            name = "ReaperUtils"
-            setUrl(publishData.getRepository())
+            name = "EldoNexus"
+            url = uri(publishData.getRepository())
         }
     }
 }

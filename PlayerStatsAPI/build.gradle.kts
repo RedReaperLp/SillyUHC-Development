@@ -3,31 +3,6 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 group = "com.github.redreaperlp.psa"
 version = "1.0.0"
 
-publishData {
-    useEldoNexusRepos()
-    publishComponent("java")
-}
-
-publishing {
-    publications.create<MavenPublication>("maven") {
-        publishData.configurePublication(this)
-    }
-
-    repositories {
-        maven {
-            authentication {
-                credentials(PasswordCredentials::class) {
-                    username = System.getenv("NEXUS_USERNAME")
-                    password = System.getenv("NEXUS_PASSWORD")
-                }
-            }
-
-            name = "PlayerStatsAPI"
-            setUrl(publishData.getRepository())
-        }
-    }
-}
-
 dependencies {
     implementation("com.zaxxer", "HikariCP", "5.0.1")
     implementation("org.mariadb.jdbc", "mariadb-java-client", "3.2.0")
@@ -53,3 +28,28 @@ tasks.register<Wrapper>("wrapper") {
 }
 
 tasks.register("prepareKotlinBuildScriptModel"){}
+
+publishData {
+    useEldoNexusRepos()
+    publishComponent("java")
+}
+
+publishing {
+    publications.create<MavenPublication>("maven") {
+        publishData.configurePublication(this)
+    }
+
+    repositories {
+        maven {
+            authentication {
+                credentials(PasswordCredentials::class) {
+                    username = System.getenv("NEXUS_USERNAME")
+                    password = System.getenv("NEXUS_PASSWORD")
+                }
+            }
+
+            name = "EldoNexus"
+            url = uri(publishData.getRepository())
+        }
+    }
+}
