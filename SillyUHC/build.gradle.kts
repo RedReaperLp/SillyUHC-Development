@@ -20,11 +20,19 @@ tasks {
     }
 }
 
-tasks.getByName("shadowJar").finalizedBy("copyFile")
+tasks.getByName("shadowJar").finalizedBy("copyFile").finalizedBy("copyFile2").finalizedBy("copyFile3")
 
 tasks.register<Copy>("copyFile") {
     from("build/libs/SillyUHC.jar")
-    into("E:\\Minecraft_Server\\1.19\\1.19.4\\Paper\\5\\plugins")
+    into("E:\\Minecraft_Server\\1.19\\1.19.4\\Paper\\1\\plugins")
+}
+tasks.register<Copy>("copyFile2") {
+    from("build/libs/SillyUHC.jar")
+    into("E:\\Minecraft_Server\\1.19\\1.19.4\\Paper\\2\\plugins")
+}
+tasks.register<Copy>("copyFile3") {
+    from("build/libs/SillyUHC.jar")
+    into("E:\\Minecraft_Server\\1.19\\1.19.4\\Paper\\3\\plugins")
 }
 
 tasks.register<Wrapper>("wrapper") {

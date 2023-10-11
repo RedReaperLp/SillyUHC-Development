@@ -3,7 +3,6 @@ package com.github.redreaperlp.sillyuhc.listener;
 import com.github.redreaperlp.psa.database.PlayerData;
 import com.github.redreaperlp.sillyuhc.SillyUHC;
 import com.github.redreaperlp.sillyuhc.ui.scoreboard.ScoreboardManager;
-import com.github.redreaperlp.sillyuhc.ui.scoreboard.boards.ScoreboardWrapper;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -16,7 +15,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,27 +30,13 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        Bukkit.getScheduler().runTaskLater(sillyUHC, () -> {
-            event.getPlayer().teleport(sillyUHC.getLobbyWorld().getSpawnLocation());
-            sillyUHC.getLobbyScoreboard().showPlayer(event.getPlayer());
-            ScoreboardManager.update();
-        }, 1);
+
+        Bukkit.getScheduler().runTaskLater(sillyUHC, ScoreboardManager::update, 1);
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Bukkit.getScheduler().runTaskLater(sillyUHC, ScoreboardManager::update, 1);
-    }
-
-    @EventHandler
-    public void onPlayerTeleport(PlayerTeleportEvent e) {
-        if (e.getFrom().getWorld() != e.getTo().getWorld()) {
-            if (e.getTo().getWorld().equals(sillyUHC.getLobbyWorld())) {
-                sillyUHC.getLobbyScoreboard().showPlayer(e.getPlayer());
-            } else {
-                ScoreboardManager.currentScoreboard.showPlayer(e.getPlayer());
-            }
-        } 
     }
 
     @EventHandler

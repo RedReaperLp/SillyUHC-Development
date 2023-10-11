@@ -28,7 +28,7 @@ public class Game {
     }
 
     public void start() {
-        sillyUHC.getLobbyWorld().getPlayers().forEach(player -> {
+        Bukkit.getOnlinePlayers().forEach(player -> {
             participators.add(new Participator(player.getUniqueId(), player.getName()));
         });
         phaseUpdater = Bukkit.getScheduler().runTaskTimerAsynchronously(sillyUHC, () -> {
