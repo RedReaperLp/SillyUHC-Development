@@ -13,6 +13,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
+import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -23,6 +24,7 @@ public class SillyUHC extends JavaPlugin {
     public static Component prefix = Component.text("UHC » ", TextColor.color(0xff8c00), TextDecoration.BOLD);
     private PlayerStatsAPI api = (PlayerStatsAPI) Bukkit.getServer().getPluginManager().getPlugin("PlayerStatsAPI");
     public static AdventureUtil adventureUtil;
+    public static VotedMap votedMap;
     private Game game;
 
     @Override
@@ -66,6 +68,8 @@ public class SillyUHC extends JavaPlugin {
         });
         ticker.setName("SillyUHC-Ticker");
         ticker.start();
+        String[] map = getConfig().getStringList("game-maps").get(0).split(":");
+        votedMap = new VotedMap(Bukkit.createWorld(new WorldCreator(map[0])), Integer.parseInt(map[1]));
     }
 
     @Override

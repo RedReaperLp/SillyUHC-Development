@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class StringParser {
     public static ParsedComponent[] parseString(String input) {
         List<ParsedComponent> components = new ArrayList<>();
-        Pattern pattern = Pattern.compile("(%\\w+%|<#[0-9a-fA-F]{2,6}>|[^<>%]+|[<>%#])");
+        Pattern pattern = Pattern.compile("(%\\w+%|<#[0-9a-fA-F]{2,6}>|&#[0-9a-fA-F]{6}|(&#[0-9a-fA-F]{6})|\\w+|&#)|( )");
 
         Matcher matcher = pattern.matcher(input);
 
@@ -21,6 +21,10 @@ public class StringParser {
                 components.add(new ParsedPlaceholder(match));
             } else if (match.matches("<#[0-9a-fA-F]{2,6}>")) {
                 components.add(new ParsedColor(match.substring(2, match.length() - 1)));
+            } else if (match.matches("&#[0-9a-f]]{6}")) {
+                components.add(new ParsedColor(match.substring(2)));
+            } else if (match.matches("(&#[0-9a-fA-F]{6})")) {
+                components.add(new ParsedColor(match.substring(2)));
             } else {
                 components.add(new ParsedText(match));
             }

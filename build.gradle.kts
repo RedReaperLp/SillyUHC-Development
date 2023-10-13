@@ -45,10 +45,12 @@ allprojects {
         maven("https://oss.sonatype.org/content/repositories/central")
         maven("https://eldonexus.de/repository/maven-public/")
         maven("https://eldonexus.de/repository/maven-proxies/")
+        maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
     }
 
     dependencies {
         compileOnly("io.papermc.paper", "paper-api", "1.17.1-R0.1-SNAPSHOT")
+        compileOnly("me.clip", "placeholderapi", "2.11.4")
         implementation("net.kyori", "adventure-platform-bukkit", "4.3.0")
         implementation("org.json", "json", "20230618")
     }

@@ -7,10 +7,11 @@
 # are used in the game, if no host is
 # online, the game will give the players
 # the ability to vote for a map.
+# The format is:
+#   - map-name:map-size (Blocks)
 #----------------------------------------
 game-maps:
-  - 0000map1
-  - 0000map2
+  - 0000map1:2048
 
 #----------------------------------------
 # This is the map that will be used as

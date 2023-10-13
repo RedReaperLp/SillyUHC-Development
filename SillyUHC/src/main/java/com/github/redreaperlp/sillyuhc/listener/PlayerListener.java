@@ -52,6 +52,14 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
+        event.setCancelled(true);
+        String message = event.getMessage();
+        AdventureUtil.broadcast(Component.text(event.getPlayer().getName() + ": ", TextColor.color(0x0096FF))
+                .append(StringParser.parse(message)));
+    }
+
+    @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         ScoreboardManager.removePlayer(event.getPlayer());
         Bukkit.getScheduler().runTaskLater(sillyUHC, ScoreboardManager::update, 1);

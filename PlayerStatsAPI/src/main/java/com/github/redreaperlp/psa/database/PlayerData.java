@@ -1,8 +1,11 @@
 package com.github.redreaperlp.psa.database;
 
 import com.github.redreaperlp.psa.PluginPermission;
+import me.clip.placeholderapi.PlaceholderAPI;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -25,6 +28,8 @@ public class PlayerData {
         this.wins = wins;
         this.losses = losses;
         this.dailyProgress = dailyProgress;
+
+        String coloredPlaceholders = "<#ff0000>%player_name%";
     }
 
     public UUID getUuid() {

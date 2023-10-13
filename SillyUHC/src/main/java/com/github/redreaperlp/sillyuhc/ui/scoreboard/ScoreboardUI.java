@@ -37,7 +37,7 @@ public abstract class ScoreboardUI {
 
     public void setScore(int score, String name) {
         Team team = scoreboard.lines().get(score);
-        String entry = " ".repeat(score);
+        String entry = "§".repeat(score);
         if (name == null) {
             if (team != null) {
                 team.unregister();
