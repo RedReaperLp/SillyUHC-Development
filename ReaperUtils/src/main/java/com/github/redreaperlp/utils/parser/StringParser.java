@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class StringParser {
     public static ParsedComponent[] parseString(String input) {
         List<ParsedComponent> components = new ArrayList<>();
-        Pattern pattern = Pattern.compile("(%\\w+%|<#[0-9a-fA-F]{2,6}>|&#[0-9a-fA-F]{6}|(&#[0-9a-fA-F]{6})|\\w+|&#)|( )");
+        Pattern pattern = Pattern.compile("(%\\w+%|<#[0-9a-fA-F]{2,6}>|&#[0-9a-fA-F]{6}|[^<>%&]+|.)");
 
         Matcher matcher = pattern.matcher(input);
 
