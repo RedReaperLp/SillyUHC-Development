@@ -6327,3 +6327,10 @@
 /ReaperUtils/build/tmp/compileJava/previous-compilation-data.bin
 /ReaperUtils/build/tmp/jar/MANIFEST.MF
 /ReaperUtils/build/tmp/shadowJar/MANIFEST.MF
+/.gradle/
+/ReaperUtils/build/
+/PlayerStatsAPI/build/
+/build/
+/.gradle/
+/SillyUHC/.gradle/
+/SillyUHC/build/
