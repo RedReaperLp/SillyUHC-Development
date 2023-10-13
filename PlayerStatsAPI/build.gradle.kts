@@ -1,6 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-group = "com.github.redreaperlp.psa"
+group = "com.github.redreaperlp"
 version = "1.0.0"
 
 dependencies {

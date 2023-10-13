@@ -29,7 +29,7 @@ public class StringParser {
         return components.toArray(new ParsedComponent[0]);
     }
 
-    public Component parse(String input) {
+    public static Component parse(String input) {
         ParsedComponent[] components = parseString(input);
         Component component = Component.empty();
         int currentColor = 0xffffff;

@@ -21,7 +21,7 @@ public abstract class ScoreboardUI {
     public ScoreboardUI(SillyUHC plugin) {
         this.plugin = plugin;
         Scoreboard scoreboard = plugin.getServer().getScoreboardManager().getNewScoreboard();
-        Objective objective = scoreboard.registerNewObjective("SillyUHC", Criteria.DUMMY, AdventureUtil.serialize(Component.text("SillyUHC", TextColor.color(0xff8c00)).decorate(TextDecoration.BOLD)));
+        Objective objective = scoreboard.registerNewObjective("SillyUHC", "dummy", AdventureUtil.serialize(Component.text("SillyUHC", TextColor.color(0xff8c00)).decorate(TextDecoration.BOLD)));
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         this.scoreboard = new ScoreboardStore(scoreboard, objective, new HashMap<>());
     }

@@ -5,6 +5,8 @@ import com.github.redreaperlp.sillyuhc.NameSpacedKeyWrapper;
 import com.github.redreaperlp.sillyuhc.SillyUHC;
 import com.github.redreaperlp.sillyuhc.game.Game;
 import com.github.redreaperlp.sillyuhc.ui.scoreboard.ScoreboardManager;
+import com.github.redreaperlp.utils.AdventureUtil;
+import com.github.redreaperlp.utils.parser.StringParser;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -19,6 +21,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -41,7 +44,7 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         PersistentDataContainer pdc = player.getPersistentDataContainer();
-        if (!pdc.has(NameSpacedKeyWrapper.keyParticipator)) {
+        if (!pdc.has(NameSpacedKeyWrapper.keyParticipator, PersistentDataType.STRING)) {
             pdc.set(NameSpacedKeyWrapper.keyParticipator, PersistentDataType.STRING, "participating");
         }
         ScoreboardManager.addPlayer(event.getPlayer());

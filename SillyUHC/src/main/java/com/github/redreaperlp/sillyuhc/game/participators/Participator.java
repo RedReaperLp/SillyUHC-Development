@@ -1,26 +1,36 @@
 package com.github.redreaperlp.sillyuhc.game.participators;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import static com.github.redreaperlp.sillyuhc.SillyUHC.adventureUtil;
 
 public class Participator {
     private UUID playerUUID;
     private String playerName;
     private List<Participator> killedBy = new ArrayList<>();
 
-    public Participator(UUID playerUUID, String playerName) {
-        this.playerUUID = playerUUID;
-        this.playerName = playerName;
+    public Participator(Player player) {
+        this.playerUUID = player.getUniqueId();
+        this.playerName = player.getName();
 
-        //TODO: update all stats like hunger, health, exp, etc.
-        adventureUtil.sendWithPrefix(Component.text("You are Participating", TextColor.color(0xff0000)),Bukkit.getPlayer(playerUUID));
+        updateStats(player);
+    }
+
+    private void updateStats(Player player) {
+        player.setHealth(20);
+        player.setFoodLevel(20);
+        player.setSaturation(20);
+        player.setExhaustion(0);
+        player.setExp(0);
+        player.setLevel(0);
+        player.setTotalExperience(0);
+        player.setFireTicks(0);
+        player.setFallDistance(0);
+        player.setRemainingAir(player.getMaximumAir());
+        player.setNoDamageTicks(0);
+        player.setLastDamageCause(null);
     }
 
     public UUID getPlayerUUID() {

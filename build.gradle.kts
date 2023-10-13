@@ -48,7 +48,7 @@ allprojects {
     }
 
     dependencies {
-        compileOnly("io.papermc.paper", "paper-api", "1.19.4-R0.1-SNAPSHOT")
+        compileOnly("io.papermc.paper", "paper-api", "1.17.1-R0.1-SNAPSHOT")
         implementation("net.kyori", "adventure-platform-bukkit", "4.3.0")
         implementation("org.json", "json", "20230618")
     }

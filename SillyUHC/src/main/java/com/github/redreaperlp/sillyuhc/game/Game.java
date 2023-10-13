@@ -1,15 +1,23 @@
 package com.github.redreaperlp.sillyuhc.game;
 
+import com.github.redreaperlp.sillyuhc.NameSpacedKeyWrapper;
 import com.github.redreaperlp.sillyuhc.SillyUHC;
+import com.github.redreaperlp.sillyuhc.game.participators.Participator;
 import com.github.redreaperlp.utils.AdventureUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.Bukkit;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.github.redreaperlp.sillyuhc.SillyUHC.adventureUtil;
+
 public class Game {
     private PhaseType currentPhase = PhaseType.WAITING;
+    private List<Participator> participators = new ArrayList<>();
     private List<Phase> phases;
     private SillyUHC uhc;
 
@@ -33,6 +41,16 @@ public class Game {
 
     public void start() {
         currentPhase = PhaseType.NO_PVP;
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            PersistentDataContainer pdc = player.getPersistentDataContainer();
+            if (pdc.has(NameSpacedKeyWrapper.keyParticipator, PersistentDataType.STRING)) {
+                if (pdc.get(NameSpacedKeyWrapper.keyParticipator, PersistentDataType.STRING).equals("participating")) {
+                    participators.add(new Participator(player));
+                } else {
+                    adventureUtil.sendWithPrefix(Component.text("You are spectating", TextColor.color(0xff0000)), player);
+                }
+            }
+        });
     }
     public Phase getCurrentPhase() {
         if (phases.isEmpty()) return null;

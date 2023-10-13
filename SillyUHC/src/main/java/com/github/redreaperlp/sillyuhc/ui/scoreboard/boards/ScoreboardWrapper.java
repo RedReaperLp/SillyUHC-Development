@@ -5,7 +5,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
-import org.bukkit.scoreboard.Criteria;
+import org.bukkit.scoreboard.Criterias;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
@@ -18,7 +18,7 @@ public class ScoreboardWrapper {
 
     public static ScoreboardStore createScoreboardStore(String name, Component title) {
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-        Objective objective = scoreboard.registerNewObjective(name, Criteria.DUMMY, AdventureUtil.serialize(title));
+        Objective objective = scoreboard.registerNewObjective(name, "dummy", AdventureUtil.serialize(title));
         objective.setDisplaySlot(org.bukkit.scoreboard.DisplaySlot.SIDEBAR);
         return new ScoreboardStore(scoreboard, objective, new HashMap<>());
     }
