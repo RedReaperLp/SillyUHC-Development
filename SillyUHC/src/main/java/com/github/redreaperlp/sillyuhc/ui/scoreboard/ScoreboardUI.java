@@ -35,7 +35,7 @@ public abstract class ScoreboardUI {
         if (player.getScoreboard() != scoreboard.scoreboard()) player.setScoreboard(scoreboard.scoreboard());
     }
 
-    public void setScore(int score, String name, String value) {
+    public void setScore(int score, String name) {
         Team team = scoreboard.lines().get(score);
         String entry = " ".repeat(score);
         if (name == null) {
@@ -52,8 +52,13 @@ public abstract class ScoreboardUI {
             scoreboard.lines().put(score, team);
         }
         team.setPrefix(name);
-        team.setSuffix(value);
         scoreboard.objective().getScore(entry).setScore(score);
+    }
+
+    public void reset() {
+        for (int i = 0; i < 15; i++) {
+            setScore(i, null);
+        }
     }
 
     public void showAllPlayers() {

@@ -15,3 +15,25 @@ commands:
     aliases: [ps]
 softdepend:
   - "PlayerStatsAPI"
+permissions:
+  sillyuhc.menu:
+    description: "Allows the player to open the SillyUHC menu"
+    default: op
+  sillyuhc.spectate:
+    description: "Allows the player to spectate a game"
+    default: op
+  sillyuhc.nopvp:
+    description: "Allows the player to deal damage and place hurting blocks in the noPvP phase"
+    children:
+      - sillyuhc.nopvp.damage
+      - sillyuhc.nopvp.place
+    default: op
+  sillyuhc.nopvp.damage:
+    description: "Allows the player to deal damage in the noPvP phase"
+    default: op
+  sillyuhc.nopvp.place:
+    description: "Allows the player to place hurting blocks in the noPvP phase"
+    default: op
+  sillyuhc.build:
+    description: "Allows the player to build before the game starts"
+    default: op

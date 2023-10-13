@@ -17,9 +17,9 @@ group = "com.github.redreaperlp"
 version = "1.0"
 
 tasks.register("buildAll") {
-    dependsOn(":ReaperUtils:shadowJar")
-    dependsOn(":PlayerStatsAPI:shadowJar")
-    dependsOn(":SillyUHC:shadowJar")
+    finalizedBy(":ReaperUtils:shadowJar")
+    finalizedBy(":PlayerStatsAPI:shadowJar")
+    finalizedBy(":SillyUHC:shadowJar")
 }
 
 

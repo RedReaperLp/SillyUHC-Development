@@ -18,6 +18,7 @@ public class Participator {
     public Participator(UUID playerUUID, String playerName) {
         this.playerUUID = playerUUID;
         this.playerName = playerName;
+
         //TODO: update all stats like hunger, health, exp, etc.
         adventureUtil.sendWithPrefix(Component.text("You are Participating", TextColor.color(0xff0000)),Bukkit.getPlayer(playerUUID));
     }

@@ -4,7 +4,10 @@ import com.github.redreaperlp.psa.PlayerStatsAPI;
 import com.github.redreaperlp.sillyuhc.commands.CommandTabCompleter;
 import com.github.redreaperlp.sillyuhc.commands.SillyCommand;
 import com.github.redreaperlp.sillyuhc.commands.Stats;
+import com.github.redreaperlp.sillyuhc.game.Game;
+import com.github.redreaperlp.sillyuhc.game.Phase;
 import com.github.redreaperlp.sillyuhc.listener.PlayerListener;
+import com.github.redreaperlp.sillyuhc.ui.scoreboard.ScoreboardManager;
 import com.github.redreaperlp.utils.AdventureUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -12,13 +15,15 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.util.List;
+
 public class SillyUHC extends JavaPlugin {
     private static SillyUHC instance;
-
     public static Component prefix = Component.text("UHC » ", TextColor.color(0xff8c00), TextDecoration.BOLD);
     private PlayerStatsAPI api = (PlayerStatsAPI) Bukkit.getServer().getPluginManager().getPlugin("PlayerStatsAPI");
     public static AdventureUtil adventureUtil;
-
+    private Game game;
 
     @Override
     public void onEnable() {
@@ -37,16 +42,43 @@ public class SillyUHC extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        saveResource("config.yml", false);
+        loadSettings();
 
         registerCommand("sillyuhc", new SillyCommand(this));
         registerCommand("stats", new Stats(this));
         registerListeners();
+        Bukkit.getOnlinePlayers().forEach(ScoreboardManager::addPlayer);
+        ScoreboardManager.startUpdateThread();
+        game = new Game(List.of(new Phase(Game.PhaseType.NO_PVP, 20), new Phase(Game.PhaseType.PVP, 20)), this);
+        ticker = new Thread(() -> {
+            while (!ticker.isInterrupted()) {
+                try {
+                    Thread.sleep(1000);
+                    game.tick();
+                    synchronized (ScoreboardManager.update) {
+                        ScoreboardManager.update.notifyAll();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        });
+        ticker.setName("SillyUHC-Ticker");
+        ticker.start();
     }
 
     @Override
     public void onDisable() {
+        if (ticker != null) ticker.interrupt();
+        ScoreboardManager.stopUpdateThread();
+    }
 
+    public void loadSettings() {
+        File outFile = new File(getDataFolder(), "config.yml");
+        if (!outFile.exists()) {
+            saveResource("config.yml", false);
+        }
     }
 
 
@@ -67,6 +99,17 @@ public class SillyUHC extends JavaPlugin {
     public PlayerStatsAPI getPSA() {
         return api;
     }
+
+    public Game getCurrentGame() {
+        return game;
+    }
+
+    Thread ticker;
+
+
+
+
+
 
     //TODO: Teams/Solo <- Votable only if there is no "Host"
     //TODO: Map Voting

@@ -2,7 +2,6 @@ package com.github.redreaperlp.utils;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.serializer.bungeecord.BungeeComponentSerializer;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -21,13 +20,17 @@ public class AdventureUtil {
     }
     public void sendWithPrefix(Component message, CommandSender receiver) {
         if (message.color() == null) message = message.color(TextColor.color(0xffffff));
-        send(receiver, prefix.append(message));
+        send(receiver, Component.empty().append(prefix).append(message));
     }
 
     public void sendWithPrefix(Component message, Player... receivers) {
         for (Player receiver : receivers) {
             sendWithPrefix(message, receiver);
         }
+    }
+
+    public void broadcastWithPrefix(Component message) {
+        broadcast(Component.empty().append(prefix).append(message));
     }
 
     public static void send(CommandSender receiver, Component message) {

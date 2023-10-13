@@ -59,11 +59,11 @@ public class PlayerStatsAPI extends JavaPlugin {
 
 
     private void loadSettings() {
+        File outFile = new File(getDataFolder(), "config.yml");
+        if (!outFile.exists()) {
+            saveResource("config.yml", false);
+        }
         Bukkit.getScheduler().runTaskLater(this, () -> {
-            File outFile = new File(getDataFolder(), "config.yml");
-            if (!outFile.exists()) {
-                saveResource("config.yml", false);
-            }
             List<String> aPWAP = new ArrayList<>(); // aPWAP = allowedPluginsWithAnyPermission
             addToList(aPWAP, "plugin.full-access");
             addToList(aPWAP, "plugin.coin-change");
