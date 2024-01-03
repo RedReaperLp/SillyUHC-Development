@@ -8,7 +8,7 @@
 # online, the game will give the players
 # the ability to vote for a map.
 # The format is:
-#   - map-name:map-size (Blocks)
+#   - map-name:map-size (Radius -> Blocks)
 #----------------------------------------
 game-maps:
   - 0000map1:2048

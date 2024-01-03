@@ -6,10 +6,20 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/PlayerStatsAPI/SillyUHC-Development.PlayerStatsAPI.test.iml" filepath="$PROJECT_DIR$/.idea/modules/PlayerStatsAPI/SillyUHC-Development.PlayerStatsAPI.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ReaperUtils/SillyUHC-Development.ReaperUtils.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ReaperUtils/SillyUHC-Development.ReaperUtils.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ReaperUtils/SillyUHC-Development.ReaperUtils.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ReaperUtils/SillyUHC-Development.ReaperUtils.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SMP/SillyUHC-Development.SMP.main.iml" filepath="$PROJECT_DIR$/.idea/modules/SMP/SillyUHC-Development.SMP.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SMP/SillyUHC-Development.SMP.test.iml" filepath="$PROJECT_DIR$/.idea/modules/SMP/SillyUHC-Development.SMP.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SillyUHC/SillyUHC-Development.SillyUHC.main.iml" filepath="$PROJECT_DIR$/.idea/modules/SillyUHC/SillyUHC-Development.SillyUHC.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SillyUHC/SillyUHC-Development.SillyUHC.test.iml" filepath="$PROJECT_DIR$/.idea/modules/SillyUHC/SillyUHC-Development.SillyUHC.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SillyUHC-Development.main.iml" filepath="$PROJECT_DIR$/.idea/modules/SillyUHC-Development.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SillyUHC-Development.test.iml" filepath="$PROJECT_DIR$/.idea/modules/SillyUHC-Development.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.github.redreaperlp.SillyUHC-Development.PlayerStatsAPI.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.github.redreaperlp.SillyUHC-Development.PlayerStatsAPI.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.github.redreaperlp.SillyUHC-Development.PlayerStatsAPI.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.github.redreaperlp.SillyUHC-Development.PlayerStatsAPI.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1942642891/com.github.redreaperlp.SillyUHC-Development.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1942642891/com.github.redreaperlp.SillyUHC-Development.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1942642891/com.github.redreaperlp.SillyUHC-Development.test.iml" filepath="$PROJECT_DIR$/.idea/modules/-1942642891/com.github.redreaperlp.SillyUHC-Development.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-478308857/com.github.redreaperlp.sillyuhc.SillyUHC-Development.SillyUHC.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-478308857/com.github.redreaperlp.sillyuhc.SillyUHC-Development.SillyUHC.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-478308857/com.github.redreaperlp.sillyuhc.SillyUHC-Development.SillyUHC.test.iml" filepath="$PROJECT_DIR$/.idea/modules/-478308857/com.github.redreaperlp.sillyuhc.SillyUHC-Development.SillyUHC.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/130328680/com.github.redreaperlp.utils.SillyUHC-Development.ReaperUtils.main.iml" filepath="$PROJECT_DIR$/.idea/modules/130328680/com.github.redreaperlp.utils.SillyUHC-Development.ReaperUtils.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/130328680/com.github.redreaperlp.utils.SillyUHC-Development.ReaperUtils.test.iml" filepath="$PROJECT_DIR$/.idea/modules/130328680/com.github.redreaperlp.utils.SillyUHC-Development.ReaperUtils.test.iml" />
     </modules>
   </component>
 </project>

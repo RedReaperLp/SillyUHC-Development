@@ -14,7 +14,7 @@ publishData {
 }
 
 group = "com.github.redreaperlp"
-version = "1.0"
+version = "1.1"
 
 tasks.register("buildAll") {
     finalizedBy(":ReaperUtils:shadowJar")

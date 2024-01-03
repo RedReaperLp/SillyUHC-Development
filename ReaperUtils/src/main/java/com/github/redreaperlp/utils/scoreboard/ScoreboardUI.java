@@ -1,24 +1,26 @@
-package com.github.redreaperlp.sillyuhc.ui.scoreboard;
+package com.github.redreaperlp.utils.scoreboard;
 
-import com.github.redreaperlp.sillyuhc.SillyUHC;
-import com.github.redreaperlp.sillyuhc.ui.scoreboard.boards.ScoreboardStore;
 import com.github.redreaperlp.utils.AdventureUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.*;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public abstract class ScoreboardUI {
-    private final SillyUHC plugin;
+    private final JavaPlugin plugin;
     private final ScoreboardStore scoreboard;
 
-    public ScoreboardUI(SillyUHC plugin) {
+    public ScoreboardUI(JavaPlugin plugin) {
         this.plugin = plugin;
         Scoreboard scoreboard = plugin.getServer().getScoreboardManager().getNewScoreboard();
         Objective objective = scoreboard.registerNewObjective("SillyUHC", "dummy", AdventureUtil.serialize(Component.text("SillyUHC", TextColor.color(0xff8c00)).decorate(TextDecoration.BOLD)));
@@ -26,7 +28,7 @@ public abstract class ScoreboardUI {
         this.scoreboard = new ScoreboardStore(scoreboard, objective, new HashMap<>());
     }
 
-    public ScoreboardUI(SillyUHC plugin, ScoreboardStore scoreboardStore) {
+    public ScoreboardUI(JavaPlugin plugin, ScoreboardStore scoreboardStore) {
         this.plugin = plugin;
         this.scoreboard = scoreboardStore;
     }

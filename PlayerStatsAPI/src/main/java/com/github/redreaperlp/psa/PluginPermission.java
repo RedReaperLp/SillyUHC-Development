@@ -98,9 +98,13 @@ public record PluginPermission(Plugin plugin, boolean coinChangePerm, boolean kd
     }
 
     public enum PermissionType {
+        //Coin Change
         COIN_CHANGE,
+        //Kill Death Win Lose Change
         KDWL_CHANGE,
+        //Daily Change
         DAILY_CHANGE,
+        //Database Access
         DATABASE_ACCESS
     }
 }

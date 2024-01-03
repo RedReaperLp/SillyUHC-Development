@@ -9,6 +9,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -42,6 +43,8 @@ public class Game {
         currentPhase = phases.get(0).getPhaseType();
     }
 
+    List<Material> invalidBlocks = List.of(Material.WATER, Material.LAVA, Material.BARRIER);
+
     public void start() {
         Random random = new Random();
         VotedMap vM = uhc.votedMap;
@@ -51,12 +54,17 @@ public class Game {
             if (pdc.has(NameSpacedKeyWrapper.keyParticipator, PersistentDataType.STRING)) {
                 if (pdc.get(NameSpacedKeyWrapper.keyParticipator, PersistentDataType.STRING).equals("participating")) {
                     participators.add(new Participator(player));
-
-                    int x = random.nextInt(vM.size() * 2) - vM.size();
-                    int z = random.nextInt(vM.size() * 2) - vM.size();
-
-
-                    player.teleport(new Location(vM.world(), random.nextInt(vM.size() * 2) - vM.size(), 255, random.nextInt(vM.size() * 2) - vM.size()));
+                    int tries = 0;
+                    while (tries < 10) {
+                        int x = random.nextInt(vM.size() * 2) - vM.size();
+                        int z = random.nextInt(vM.size() * 2) - vM.size();
+                        Location l = new Location(vM.world(), x, searchHighestNonAirBelow(200, x, z), z);
+                        if (!invalidBlocks.contains(l.getBlock().getType())) {
+                            player.teleport(l.toCenterLocation().add(0, 1, 0));
+                            break;
+                        }
+                        tries++;
+                    }
                 } else {
                     adventureUtil.sendWithPrefix(Component.text("You are spectating", TextColor.color(0xff0000)), player);
                 }
@@ -66,7 +74,8 @@ public class Game {
 
     public int searchHighestNonAirBelow(int maxHeight, int x, int z) {
         for (int y = maxHeight; y > 0; y--) {
-            if (uhc.votedMap.world().getBlockAt(x, y, z).getType().isAir()) {
+            Material type = uhc.votedMap.world().getBlockAt(x, y, z).getType();
+            if (type.isAir() || type.equals(Material.BARRIER)) {
                 continue;
             }
             return y;

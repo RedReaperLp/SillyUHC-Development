@@ -1,7 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 group = "com.github.redreaperlp"
-version = "1.0.0"
+version = "1.0.1"
 
 dependencies {
     implementation("com.zaxxer", "HikariCP", "5.0.1")

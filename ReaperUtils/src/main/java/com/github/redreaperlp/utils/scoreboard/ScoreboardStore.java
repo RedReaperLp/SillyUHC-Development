@@ -1,4 +1,4 @@
-package com.github.redreaperlp.sillyuhc.ui.scoreboard.boards;
+package com.github.redreaperlp.utils.scoreboard;
 
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;

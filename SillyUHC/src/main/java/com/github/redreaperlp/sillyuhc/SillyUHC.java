@@ -9,11 +9,13 @@ import com.github.redreaperlp.sillyuhc.game.Phase;
 import com.github.redreaperlp.sillyuhc.listener.PlayerListener;
 import com.github.redreaperlp.sillyuhc.ui.scoreboard.ScoreboardManager;
 import com.github.redreaperlp.utils.AdventureUtil;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.WorldCreator;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
