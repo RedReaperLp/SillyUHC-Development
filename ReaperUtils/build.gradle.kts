@@ -20,6 +20,7 @@ publishing {
         publishData.configurePublication(this)
     }
 
+
     repositories {
         maven {
             authentication {
@@ -34,3 +35,10 @@ publishing {
         }
     }
 }
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+
