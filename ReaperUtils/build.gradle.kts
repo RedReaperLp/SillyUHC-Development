@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "com.github.redreaperlp.utils"
-version = "1.1"
+version = "1.2"
 
 
 dependencies {

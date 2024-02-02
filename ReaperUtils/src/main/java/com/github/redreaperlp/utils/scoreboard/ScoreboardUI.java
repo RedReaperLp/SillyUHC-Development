@@ -20,10 +20,10 @@ public abstract class ScoreboardUI {
     private final JavaPlugin plugin;
     private final ScoreboardStore scoreboard;
 
-    public ScoreboardUI(JavaPlugin plugin) {
+    public ScoreboardUI(JavaPlugin plugin, String name, String type, Component displayName) {
         this.plugin = plugin;
         Scoreboard scoreboard = plugin.getServer().getScoreboardManager().getNewScoreboard();
-        Objective objective = scoreboard.registerNewObjective("SillyUHC", "dummy", AdventureUtil.serialize(Component.text("SillyUHC", TextColor.color(0xff8c00)).decorate(TextDecoration.BOLD)));
+        Objective objective = scoreboard.registerNewObjective(name, type, AdventureUtil.serialize(displayName));
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         this.scoreboard = new ScoreboardStore(scoreboard, objective, new HashMap<>());
     }

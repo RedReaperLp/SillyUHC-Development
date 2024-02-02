@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.redreaperlp.sillyuhc"
-version = "1.0.0"
+version = "1.0.1"
 
 dependencies {
     compileOnly(project(mapOf("path" to ":PlayerStatsAPI")))
